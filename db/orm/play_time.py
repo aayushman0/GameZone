@@ -10,7 +10,7 @@ def create(name: str, is_running: bool, start_time: datetime, max_time: int) -> 
 
 
 def edit(name: str, is_running: bool, start_time: datetime, max_time: int, new_name: str | None = None) -> PlayTime | None:
-    play_time: PlayTime = session.query(PlayTime).filter(PlayTime.name == name).scalar()
+    play_time: PlayTime | None = session.query(PlayTime).filter(PlayTime.name == name).scalar()
     if not play_time:
         return None
     if new_name:

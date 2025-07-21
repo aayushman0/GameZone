@@ -11,7 +11,7 @@ def create(customer_name: str, income_list: str, discount: float, price: float, 
 
 
 def edit(id: int, customer_name: str, income_list: str, discount: float, price: float, date: datetime) -> Income | None:
-    income: Income = session.query(Income).filter(Income.id == id).scalar()
+    income: Income | None = session.query(Income).filter(Income.id == id).scalar()
     if not income:
         return None
     income.customer_name = customer_name
@@ -24,7 +24,7 @@ def edit(id: int, customer_name: str, income_list: str, discount: float, price: 
 
 
 def del_res(id: int) -> bool:
-    income: Income = session.query(Income).filter(Income.id == id).scalar()
+    income: Income | None = session.query(Income).filter(Income.id == id).scalar()
     if not income:
         return False
     income.is_enabled = not income.is_enabled
@@ -37,7 +37,7 @@ def get_by_id(id: int) -> Income | None:
     return income
 
 
-def get_paginated(page: int) -> list[Income]:
+def get_paginated(page: int) -> tuple[list[Income], int]:
     expenses = session.query(Income).order_by(Income.date.desc())
     count: int = expenses.count()
     paginated_expenses: list[Income] = expenses.slice((page - 1) * ROW_COUNT, page * ROW_COUNT)

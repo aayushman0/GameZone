@@ -8,6 +8,24 @@ from datetime import datetime
 BaseModel: DeclarativeBase = declarative_base()
 
 
+class Credit(BaseModel):
+    __tablename__ = "credit"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    provider = Column("provider", String, index=True, nullable=False)
+    initial_amount = Column("initial_amount", Float)
+    current_amount = Column("current_amount", Float)
+    initial_date = Column("initial_date", DateTime)
+    last_date = Column("last_date", DateTime)
+
+    def __init__(self, provider: str, initial_amount: float, initial_date: datetime):
+        self.provider = provider
+        self.initial_amount = initial_amount
+        self.current_amount = initial_amount
+        self.initial_date = initial_date
+        self.last_date = initial_date
+
+
 class Expense(BaseModel):
     __tablename__ = "expense"
 
