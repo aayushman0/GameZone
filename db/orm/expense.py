@@ -35,8 +35,10 @@ def get_by_id(id: int) -> Expense | None:
     return expense
 
 
-def get_paginated(page: int) -> tuple[list[Expense], int]:
+def get_paginated(page: int, show_deleted: bool = False) -> tuple[list[Expense], int]:
     expenses = session.query(Expense).order_by(Expense.date.desc())
+    if not show_deleted:
+        expenses = expenses.filter(Expense.is_enabled.is_(True))
     count: int = expenses.count()
     paginated_expenses: list[Expense] = expenses.slice((page - 1) * ROW_COUNT, page * ROW_COUNT)
     return paginated_expenses, count

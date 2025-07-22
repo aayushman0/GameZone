@@ -39,7 +39,7 @@ def get_by_id(id: int) -> Credit | None:
 
 
 def get_paginated(page: int, provider: str, show_cleared: bool = False) -> tuple[list[Credit], int]:
-    credits = session.query(Credit)
+    credits = session.query(Credit).order_by(Credit.initial_date.desc())
     if provider:
         credits = credits.filter(Credit.provider.icontains(provider))
     if not show_cleared:
