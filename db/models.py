@@ -52,9 +52,10 @@ class Income(BaseModel):
     date = Column("date", DateTime, index=True)
     is_enabled = Column("is_enabled", Boolean, default=True)
 
-    def __init__(self, customer_name: str, income_list: str, price: float, date: datetime | None = None):
+    def __init__(self, customer_name: str, income_list: str, discount: float, price: float, date: datetime | None = None):
         self.customer_name = customer_name
         self.income_list = income_list
+        self.discount = discount
         self.price = price
         self.date = date if date else datetime.now()
 

@@ -24,7 +24,7 @@ class ExpenseFrame(Frame):
     def main(self):
         ttk.Label(self.add_frame, text="Name:").grid(row=self.i, column=0, sticky="e", pady=10)
         ttk.Label(self.add_frame, text="Cost:").grid(row=self.i, column=0, sticky="e", pady=10)
-        ttk.Label(self.add_frame, text="date:").grid(row=self.i, column=0, sticky="e", pady=10)
+        ttk.Label(self.add_frame, text="Date:").grid(row=self.i, column=0, sticky="e", pady=10)
         self.i = 0
         ttk.Entry(self.add_frame, textvariable=self.name).grid(row=self.i, column=1, sticky="ew")
         ttk.Entry(self.add_frame, textvariable=self.cost).grid(row=self.i, column=1, sticky="ew")
@@ -134,7 +134,7 @@ class ExpenseFrame(Frame):
         expense_id = self.id.get()
         if not expense_id:
             return None
-        confirmation = messagebox.askyesno("Are you sure?", f"Do you want to delete expense of ID. {expense_id}?")
+        confirmation = messagebox.askyesno("Are you sure?", f"Do you want to delete expense of ID.{expense_id}?")
         if not confirmation:
             return None
         expense.del_res(expense_id)
@@ -174,12 +174,14 @@ class ExpenseFrame(Frame):
             self.update_table()
 
     def refresh(self):
-        current_time = datetime.now()
         self.add_frame.tkraise()
         self.name.set("")
         self.cost.set("")
+
         self.name_2.set("")
         self.cost_2.set("")
+
+        current_time = datetime.now()
         self.year.set(current_time.year)
         self.month.set(current_time.month)
         self.day.set(current_time.day)

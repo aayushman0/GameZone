@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def create(customer_name: str, income_list: str, discount: float, price: float, date: datetime) -> Income:
-    income = Income(customer_name, income_list, price, date)
+    income = Income(customer_name, income_list, discount, price, date)
     session.add(income)
     session.commit()
     return income
@@ -37,8 +37,10 @@ def get_by_id(id: int) -> Income | None:
     return income
 
 
-def get_paginated(page: int) -> tuple[list[Income], int]:
-    expenses = session.query(Income).order_by(Income.date.desc())
-    count: int = expenses.count()
-    paginated_expenses: list[Income] = expenses.slice((page - 1) * ROW_COUNT, page * ROW_COUNT)
-    return paginated_expenses, count
+def get_paginated(page: int, show_deleted: bool = False) -> tuple[list[Income], int]:
+    incomes = session.query(Income).order_by(Income.date.desc())
+    if not show_deleted:
+        incomes = incomes.filter(Income.is_enabled.is_(True))
+    count: int = incomes.count()
+    paginated_incomes: list[Income] = incomes.slice((page - 1) * ROW_COUNT, page * ROW_COUNT)
+    return paginated_incomes, count
