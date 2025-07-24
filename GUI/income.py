@@ -234,7 +234,7 @@ class IncomeFrame(Frame):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:
-            float(discount)
+            float(discount or 0)
             float(price)
             int(year)
             int(month)
@@ -264,7 +264,7 @@ class IncomeFrame(Frame):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:
-            float(discount)
+            float(discount or 0)
             float(price)
             int(year)
             int(month)
