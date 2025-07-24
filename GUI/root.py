@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from GUI import device, timer, expense, income, credit
+from GUI import device, timer, expense, income, credit, summary
 from variables import APP_NAME, FONT, FONT_SMALL
 
 
@@ -34,11 +34,13 @@ device_frame = device.DeviceFrame(main_frame)
 expense_frame = expense.ExpenseFrame(main_frame)
 income_frame = income.IncomeFrame(main_frame)
 credit_frame = credit.CreditFrame(main_frame)
-expense_frame.set_active()
+summary_frame = summary.SummaryFrame(main_frame)
+income_frame.set_active()
 # ----------------------------------------------------------------------------------------------------------- #
 
 # ------------------------------------------------- MenuBar ------------------------------------------------- #
 menubar = tk.Menu(root, tearoff=False)
+menubar.add_command(label="Summary", command=summary_frame.set_active, font=FONT_SMALL)
 menubar.add_command(label="Income", command=income_frame.set_active, font=FONT_SMALL)
 menubar.add_command(label="Expense", command=expense_frame.set_active, font=FONT_SMALL)
 menubar.add_command(label="Credit", command=credit_frame.set_active, font=FONT_SMALL)

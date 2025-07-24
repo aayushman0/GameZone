@@ -50,12 +50,12 @@ class DeviceFrame(Frame):
         date_entry(self, date_frame_2)
         ttk.Entry(self.detail_frame, textvariable=self.max_time).grid(row=self.i, column=1, sticky="ew")
         ttk.Button(
-            self.detail_frame, text="Update Expense", style="Confirm.TButton", command=self.update_device
+            self.detail_frame, text="Update Device", style="Confirm.TButton", command=self.update_device
         ).grid(
             row=self.i, column=0, columnspan=2, sticky="ew", ipady=10
         )
         ttk.Button(
-            self.detail_frame, text="Delete Expense", style="Delete.TButton", command=self.delete_device
+            self.detail_frame, text="Delete Device", style="Delete.TButton", command=self.delete_device
         ).grid(
             row=self.i, column=0, columnspan=2, sticky="ew", ipady=10
         )
