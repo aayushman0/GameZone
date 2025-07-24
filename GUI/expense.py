@@ -57,7 +57,7 @@ class ExpenseFrame(Frame):
         ttk.Label(self.detail_frame, text="ID:").grid(row=self.i, column=0, sticky="e", pady=10)
         ttk.Label(self.detail_frame, text="Name:").grid(row=self.i, column=0, sticky="e", pady=10)
         ttk.Label(self.detail_frame, text="Cost:").grid(row=self.i, column=0, sticky="e", pady=10)
-        ttk.Label(self.detail_frame, text="date:").grid(row=self.i, column=0, sticky="e", pady=10)
+        ttk.Label(self.detail_frame, text="Date:").grid(row=self.i, column=0, sticky="e", pady=10)
         self.i = 0
         ttk.Entry(self.detail_frame, textvariable=self.id, state="readonly").grid(row=self.i, column=1, sticky="ew")
         ttk.Entry(self.detail_frame, textvariable=self.name_2).grid(row=self.i, column=1, sticky="ew")
@@ -87,7 +87,7 @@ class ExpenseFrame(Frame):
         day = self.day.get()
         hour = self.hour.get()
         minute = self.minute.get()
-        if not (name and cost and year and month and day and hour and minute):
+        if not (name and cost and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:
@@ -113,7 +113,7 @@ class ExpenseFrame(Frame):
         day = self.day.get()
         hour = self.hour.get()
         minute = self.minute.get()
-        if not (id and name and cost and year and month and day and hour and minute):
+        if not (id and name and cost and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:

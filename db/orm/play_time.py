@@ -22,6 +22,14 @@ def edit(name: str, is_running: bool, start_time: datetime, max_time: int, new_n
     return play_time
 
 
+def delete(name: str) -> None:
+    play_time: PlayTime | None = session.query(PlayTime).filter(PlayTime.name == name).scalar()
+    if not play_time:
+        return None
+    session.delete(play_time)
+    session.commit()
+
+
 def get_all() -> list[PlayTime]:
     return session.query(PlayTime)
 

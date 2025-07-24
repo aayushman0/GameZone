@@ -230,8 +230,19 @@ class IncomeFrame(Frame):
         day = self.day.get()
         hour = self.hour.get()
         minute = self.minute.get()
-        if not (income_list and price and year and month and day and hour and minute):
+        if not (income_list and price and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
+            return None
+        try:
+            float(discount)
+            float(price)
+            int(year)
+            int(month)
+            int(day)
+            int(hour)
+            int(minute)
+        except ValueError:
+            messagebox.showwarning("Wrong Type", "String used instead of numbers!")
             return None
         date = datetime(year, month, day, hour, minute)
         income_string = "||".join(f"{n}::{p}" for n, p in income_list)
@@ -249,8 +260,19 @@ class IncomeFrame(Frame):
         day = self.day.get()
         hour = self.hour.get()
         minute = self.minute.get()
-        if not (income_list and price and year and month and day and hour and minute):
+        if not (income_list and price and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
+            return None
+        try:
+            float(discount)
+            float(price)
+            int(year)
+            int(month)
+            int(day)
+            int(hour)
+            int(minute)
+        except ValueError:
+            messagebox.showwarning("Wrong Type", "String used instead of numbers!")
             return None
         date = datetime(year, month, day, hour, minute)
         income_string = "||".join(f"{n}::{p}" for n, p in income_list)
