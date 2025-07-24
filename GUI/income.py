@@ -223,7 +223,7 @@ class IncomeFrame(Frame):
     def save_income(self):
         customer_name = self.customer_name.get()
         income_list = self.income_list
-        discount = self.discount.get()
+        discount = self.discount.get() or 0
         price = self.final_price.get()
         year = self.year.get()
         month = self.month.get()
@@ -234,7 +234,7 @@ class IncomeFrame(Frame):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:
-            float(discount or 0)
+            float(discount)
             float(price)
             int(year)
             int(month)
@@ -253,7 +253,7 @@ class IncomeFrame(Frame):
         id = self.id.get()
         customer_name = self.customer_name_2.get()
         income_list = self.income_list_2
-        discount = self.discount_2.get()
+        discount = self.discount_2.get() or 0
         price = self.final_price_2.get()
         year = self.year.get()
         month = self.month.get()
@@ -264,7 +264,7 @@ class IncomeFrame(Frame):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
         try:
-            float(discount or 0)
+            float(discount)
             float(price)
             int(year)
             int(month)
