@@ -228,8 +228,8 @@ class IncomeFrame(Frame):
         year = self.year.get()
         month = self.month.get()
         day = self.day.get()
-        hour = self.hour.get()
-        minute = self.minute.get()
+        hour = self.hour.get() or 0
+        minute = self.minute.get() or 0
         if not (income_list and price and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
@@ -258,8 +258,8 @@ class IncomeFrame(Frame):
         year = self.year.get()
         month = self.month.get()
         day = self.day.get()
-        hour = self.hour.get()
-        minute = self.minute.get()
+        hour = self.hour.get() or 0
+        minute = self.minute.get() or 0
         if not (income_list and price and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None

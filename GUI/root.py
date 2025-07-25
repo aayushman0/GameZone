@@ -36,6 +36,8 @@ income_frame = income.IncomeFrame(main_frame)
 credit_frame = credit.CreditFrame(main_frame)
 summary_frame = summary.SummaryFrame(main_frame)
 income_frame.set_active()
+timer_frame.refresh()
+timer_frame.refresh_time()
 # ----------------------------------------------------------------------------------------------------------- #
 
 # ------------------------------------------------- MenuBar ------------------------------------------------- #
@@ -45,6 +47,7 @@ menubar.add_command(label="Income", command=income_frame.set_active, font=FONT_S
 menubar.add_command(label="Expense", command=expense_frame.set_active, font=FONT_SMALL)
 menubar.add_command(label="Credit", command=credit_frame.set_active, font=FONT_SMALL)
 menubar.add_command(label="Devices", command=device_frame.set_active, font=FONT_SMALL)
+menubar.add_command(label="Refresh", command=timer_frame.refresh, font=FONT_SMALL)
 root.config(menu=menubar)
 # ----------------------------------------------------------------------------------------------------------- #
 

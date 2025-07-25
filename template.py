@@ -53,6 +53,15 @@ class Frame(ttk.Frame):
         self.refresh()
 
 
+class DateClass:
+    def __init__(self):
+        self.year = IntVar()
+        self.month = IntVar()
+        self.day = IntVar()
+        self.hour = IntVar()
+        self.minute = IntVar()
+
+
 def date_entry(cls, frame: ttk.Frame):
     frame.columnconfigure((0, 2, 4, 6, 8), weight=1)
     ttk.Spinbox(frame, textvariable=cls.year, from_=2000, to=2999, justify="right", width=22).grid(row=0, column=0, sticky="ew")

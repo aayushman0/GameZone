@@ -85,8 +85,8 @@ class ExpenseFrame(Frame):
         year = self.year.get()
         month = self.month.get()
         day = self.day.get()
-        hour = self.hour.get()
-        minute = self.minute.get()
+        hour = self.hour.get() or 0
+        minute = self.minute.get() or 0
         if not (name and cost and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
@@ -111,8 +111,8 @@ class ExpenseFrame(Frame):
         year = self.year.get()
         month = self.month.get()
         day = self.day.get()
-        hour = self.hour.get()
-        minute = self.minute.get()
+        hour = self.hour.get() or 0
+        minute = self.minute.get() or 0
         if not (id and name and cost and year and month and day):
             messagebox.showwarning("Missing Values", "Values are Missing!")
             return None
