@@ -33,12 +33,21 @@ def update(id: int, amount: float, date: datetime) -> Credit | None:
     return credit
 
 
+def delete(id: int) -> None:
+    credit: Credit | None = session.query(Credit).filter(Credit.id == id).scalar()
+    if not credit:
+        return None
+    session.delete(credit)
+    session.commit()
+    return credit
+
+
 def get_by_id(id: int) -> Credit | None:
     credit: Credit | None = session.query(Credit).filter(Credit.id == id).scalar()
     return credit
 
 
-def get_paginated(page: int, provider: str, show_cleared: bool = False) -> tuple[list[Credit], int]:
+def get_paginated(page: int, provider: str | None = None, show_cleared: bool = False) -> tuple[list[Credit], int]:
     credits = session.query(Credit).order_by(Credit.initial_date.desc())
     if provider:
         credits = credits.filter(Credit.provider.icontains(provider))
