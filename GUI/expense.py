@@ -158,7 +158,7 @@ class ExpenseFrame(Frame):
 
     def update_table(self):
         expenses, expense_count = expense.get_paginated(self.page_no)
-        self.total_pages = expense_count // ROW_COUNT + 1
+        self.total_pages = (expense_count - 1) // ROW_COUNT + 1
         self.page_no_label.config(text=f"{self.page_no}/{self.total_pages}")
         self.list_table.delete(*self.list_table.get_children())
         for row in expenses:
