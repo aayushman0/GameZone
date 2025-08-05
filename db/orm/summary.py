@@ -35,6 +35,7 @@ def current_capital() -> float:
     credits = session.query(Credit)
     total_income = sum(income.price for income in incomes)
     total_expense = sum(expense.cost for expense in expenses)
+    paid_credit = sum((credit.initial_amount - credit.current_amount) for credit in credits)
     total_current_credit = sum(credit.initial_amount for credit in credits)
-    current_amount = total_income - (total_expense - total_current_credit)
+    current_amount = total_income - (total_expense - total_current_credit) - paid_credit
     return current_amount

@@ -126,7 +126,7 @@ class CreditFrame(Frame):
             messagebox.showwarning("Wrong Type", "String used instead of numbers!")
             return None
         date = datetime(year, month, day, hour, minute)
-        credit.update(id, amount, date)
+        credit.update(id, float(amount), date)
         self.refresh()
 
     def delete_credit(self):
