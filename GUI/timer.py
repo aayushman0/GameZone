@@ -11,19 +11,19 @@ class TimerFrame(Frame):
         self.update_devices()
 
     def tk_vars(self):
-        self.names = [StringVar(), StringVar(), StringVar()]
-        self.dates = [DateClass(), DateClass(), DateClass()]
-        self.max_time = [StringVar(), StringVar(), StringVar()]
-        self.counter_type = [StringVar(), StringVar(), StringVar()]
-        self.counter = [StringVar(), StringVar(), StringVar()]
+        self.names = [StringVar(), StringVar(), StringVar(), StringVar()]
+        self.dates = [DateClass(), DateClass(), DateClass(), DateClass()]
+        self.max_time = [StringVar(), StringVar(), StringVar(), StringVar()]
+        self.counter_type = [StringVar(), StringVar(), StringVar(), StringVar()]
+        self.counter = [StringVar(), StringVar(), StringVar(), StringVar()]
 
     def main(self):
-        timer_frame = [None, None, None]
-        button_funcs = [self.button_1, self.button_2, self.button_3]
-        for i in range(3):
+        timer_frame = [None, None, None, None]
+        button_funcs = [self.button_1, self.button_2, self.button_3, self.button_4]
+        for i in range(4):
             timer_frame[i] = ttk.Frame(self)
             timer_frame[i].configure(style="G.TFrame", padding=1)
-            timer_frame[i].place(relx=i / 3, rely=0, relheight=1.0, relwidth=1 / 3)
+            timer_frame[i].place(relx=i / 4, rely=0, relheight=1.0, relwidth=1 / 4)
             ttk.Label(timer_frame[i], textvariable=self.names[i], anchor="center").place(relx=0, rely=0, relwidth=1.0, relheight=0.25)
             date_frame = ttk.Frame(timer_frame[i])
             date_frame.place(relx=0, rely=0.25, relwidth=1.0, relheight=0.25)
@@ -32,7 +32,7 @@ class TimerFrame(Frame):
             button_frame.columnconfigure(3, weight=1)
             button_frame.place(relx=0, rely=0.5, relwidth=1.0, relheight=0.25)
             ttk.Label(button_frame, text="Minutes:").grid(row=0, column=0, sticky="ew")
-            ttk.Entry(button_frame, textvariable=self.max_time[i]).grid(row=0, column=1, sticky="ew")
+            ttk.Entry(button_frame, textvariable=self.max_time[i], width=10).grid(row=0, column=1, sticky="ew")
             ttk.Button(
                 button_frame, text="Start / Stop", style="Confirm.TButton", command=button_funcs[i]
             ).grid(row=0, column=2, sticky="e")
@@ -49,6 +49,9 @@ class TimerFrame(Frame):
 
     def button_3(self):
         self.button(2)
+
+    def button_4(self):
+        self.button(3)
 
     def button(self, i: int):
         year = self.dates[i].year.get()
@@ -76,7 +79,7 @@ class TimerFrame(Frame):
         self.update_devices()
 
     def update_devices(self):
-        self.devices = play_time.get_all()[:3]
+        self.devices = play_time.get_all()[:4]
 
     def refresh(self):
         current_time = datetime.now()
